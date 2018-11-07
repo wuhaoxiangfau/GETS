@@ -5,4 +5,5 @@ export default interface AbstractServiceInterface extends GEObjectInterface {
 
     getMainCamera(): CameraInterface;
 
+
 }
