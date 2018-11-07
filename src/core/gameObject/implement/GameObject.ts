@@ -5,12 +5,13 @@ import MutiValueMap from '../../../util/map/MutiValueMap';
 import ArraySet from '../../../util/ArraySet';
 import CameraInterface from "../interface/CameraInterface";
 import GameObjectInterface from "../interface/GameObjectInterface";
+import AbstarctComponentInterface from "../../components/interface/AbstarctComponentInterface";
 
 export default class GameObject extends GEObject implements GameObjectInterface {
 
-    private readonly componentMap = new MutiValueMap<typeof AbstractComponent, AbstractComponent>();
+    private readonly componentMap = new MutiValueMap<typeof AbstractComponent, AbstarctComponentInterface>();
 
-    public addComponent<T extends AbstractComponent>(component: T): T {
+    public addComponent<T extends AbstarctComponentInterface>(component: T): T {
         component.gameObject = this;
         component.Services = GE.getServiceMap();
         // console.log('GE.getServiceMap()： ', GE.getServiceMap());
@@ -19,28 +20,24 @@ export default class GameObject extends GEObject implements GameObjectInterface 
         return component;
     };
 
-    public removeComponent(component: AbstractComponent): void {
-        component.gameObject = null;
+    public removeComponent(component: AbstarctComponentInterface): void {
         GE.removeComponent(this, component);
+
+        if(!component.getAllComponents().length){
+            component.gameObject = null;
+        }
+
         this.componentMap.removeValue(component.constructorFunction, component);
     };
 
-    public getComponents(componentType: typeof AbstractComponent): ArraySet<AbstractComponent> {
+    public getComponents(componentType: typeof AbstractComponent): ArraySet<AbstarctComponentInterface> {
         return this.componentMap.get(componentType);
     };
 
-    public getComponent(componentType: typeof AbstractComponent): AbstractComponent {
+    public getComponent(componentType: typeof AbstractComponent): AbstarctComponentInterface {
         return this.componentMap.get(componentType).get(0);
     };
 
-    public getMainCamera():CameraInterface{
-        
-        return GE.getMainCamera();
-    }
-
-    public setCamera(camera: CameraInterface){
-        GE.setMainCamera(camera);
-    }
 
     public getAllComponents(){
         return this.componentMap.values();

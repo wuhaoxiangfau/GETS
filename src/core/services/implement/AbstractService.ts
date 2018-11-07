@@ -1,10 +1,12 @@
 import GEObject from "../../cntroller/implements/GEObject";
 import AbstractServiceInterface from "../interface/AbstractServiceInterface";
 import GE from "../../cntroller/GE";
-import CameraInterface from "../../gameObject/interface/CameraInterface";
+import { ServiceNameSpaces } from '../../../config/RuntimeConfig';
 
 export default class AbstractService  extends GEObject implements AbstractServiceInterface { 
-    getMainCamera(): CameraInterface{
-        return GE.getMainCamera();
+   
+    getService(serviceNameSpace: ServiceNameSpaces):AbstractServiceInterface {
+
+        return GE.getServiceMap().get(serviceNameSpace);
     }
 }

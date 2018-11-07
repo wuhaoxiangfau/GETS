@@ -25,31 +25,31 @@ export class CollisionService extends AbstractService implements CollisionServic
 
     private registImpactTask = ( component:AbstarctComponentInterface ) => {
 
-        if(component.OnHit || component.OnLeave){
+        if((<any>component).OnHit || (<any>component).OnLeave){
             const gameObject = component.gameObject;
-            const impackTask = new ImpackTask(component.onHit, component.onLeave);
-            this.objectToComponentsMap.add(gameObject.id, component.id);
-            this.impackTaskMap.set(component.id, impackTask);
+            const impackTask = new ImpackTask((<any>component).onHit, (<any>component).onLeave);
+            this.objectToComponentsMap.add(gameObject.Id, component.Id);
+            this.impackTaskMap.set(component.Id, impackTask);
         }
     };
 
     private unRegistImpactTask = ( component:AbstractComponent ) => {
         const gameObject = component.gameObject;
-        this.objectToComponentsMap.removeValue(gameObject.id, component.id);
-        this.impackTaskMap.delete(component.id);
+        this.objectToComponentsMap.removeValue(gameObject.Id, component.Id);
+        this.impackTaskMap.delete(component.Id);
     };
 
     
     //TODO 记录gamgeObjectId与位置信息.
     public updateCollisionInfo( collision: Collision2DComponentInterface, motionInfo: MotionInfo ){
-        collision.gameObject.id;
+        collision.gameObject.Id;
         collision.CollisionType;
         collision.OffsetX;
         collision.OffsetY;
         motionInfo.Position;
         motionInfo.OldPosition;
 
-        new ImpactInstanceInfo(collision.gameObject.id,motionInfo.Position);
+        new ImpactInstanceInfo(collision.gameObject.Id,motionInfo.Position);
     };
 
     //TODO 碰撞计算。

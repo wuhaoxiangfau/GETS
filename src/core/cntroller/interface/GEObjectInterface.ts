@@ -1,7 +1,9 @@
 export default  interface GEObjectInterface {
     
-    id: number;
+    readonly Id: number;
+
     constructorFunction: any;
 
-    [index: string] : any;
+    // [index: string] : any;
+
 } 

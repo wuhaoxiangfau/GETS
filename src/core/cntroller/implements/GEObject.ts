@@ -3,7 +3,12 @@ import GEObjectInterface from "../interface/GEObjectInterface";
 
 export default  class GEObject implements GEObjectInterface{
     
-    public id = Uuid.getUuid();
+    private id = 0;
+
+    get Id(){
+        // return ;
+        return this.id;
+    }
 
     // [index: string]: any;
 
@@ -11,6 +16,7 @@ export default  class GEObject implements GEObjectInterface{
 
     constructor(){
         this.constructorFunction = this.constructor;
+        this.id =  Uuid.getUuid();
     }
 
 } 

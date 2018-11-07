@@ -36,7 +36,6 @@ export default class MoveComponent extends AbstractComponent{
         this.input = this.getService(ServiceNameSpaces.InputService);
         this.positionComp = this.getComponent(Position2DComponents);
         this.timer = this.getService(ServiceNameSpaces.Timer);
-        this.mainCamera = this.getMainCamera();
     }
 
     update(){

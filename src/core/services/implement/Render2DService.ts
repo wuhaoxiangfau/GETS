@@ -21,7 +21,6 @@ export default class Render2DService extends AbstractService implements Render2D
     private mainCamera: Camera2D;
 
     public init(){
-        this.mainCamera = <Camera2D>this.getMainCamera();
         this.initCanvas();
     };
 

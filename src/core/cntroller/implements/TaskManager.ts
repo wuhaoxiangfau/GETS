@@ -6,11 +6,14 @@ import Map from '../../../util/map/Map';
 import {RuntimeConfig, RuntimeConfigUnit, ServiceConfig, ServiceNameSpaces} from '../../../config/RuntimeConfig';
 import ArraySet from '../../../util/ArraySet';
 import GEObject from './GEObject';
-import AbstractService from '../../services/implement/AbstractService';
 import TaskManagerInterface from '../interface/TaskManagerInterface';
 import TaskFolwInterface from '../interface/TaskFlowInterface';
 import GameObjectInterface from '../../gameObject/interface/GameObjectInterface';
 import GEObjectInterface from '../interface/GEObjectInterface';
+import AbstarctComponentInterface from '../../components/interface/AbstarctComponentInterface';
+import AbstractServiceInterface from '../../services/interface/AbstractServiceInterface';
+
+
 class ComponentTaskIds{
 
     constructor(startTaskId: Array<string>, loopTaskId: Array<string>, endTaskId: Array<string>){
@@ -95,7 +98,7 @@ class TaskConfig{
         });
     };
 
-    public getMethodListByInstance(GEObjectInstance: GEObject, type: TaskType): ArraySet<string>{
+    public getMethodListByInstance(GEObjectInstance: GEObjectInterface, type: TaskType): ArraySet<string>{
         const typeSet = this.typeToMethodsMap[type];
         const classList = typeSet.keys();
         const methodArraySet = new ArraySet<string>();
@@ -133,7 +136,7 @@ export default class TaskManager implements TaskManagerInterface{
 
     private componentTaskIdsMap = new Map<string, ComponentTaskIds>();
 
-    private serviceInstances = new Map<ServiceNameSpaces, AbstractService>();
+    private serviceInstances = new Map<ServiceNameSpaces, AbstractServiceInterface>();
 
     private createServiceTask(){
         this.taskConfig.ServiceConfigTypeArry.map( serviceConfig => {
@@ -150,12 +153,12 @@ export default class TaskManager implements TaskManagerInterface{
     /**
      * 装载任务.
      */
-    public addComponentTask<T extends AbstractComponent>(gameObject: GameObjectInterface,component: T): void{
+    public addComponentTask<T extends AbstarctComponentInterface>(gameObject: GameObjectInterface,component: T): void{
         
       const startIds = this.addTasks<T>(component,TaskType.START);
       const loopIds = this.addTasks<T>(component,TaskType.LOOP);
       const endIds = this.addTasks<T>(component,TaskType.END);
-      this.componentTaskIdsMap.set(`${gameObject.id}_${component.id}`, new ComponentTaskIds(startIds, loopIds, endIds));
+      this.componentTaskIdsMap.set(`${gameObject.Id}_${component.Id}`, new ComponentTaskIds(startIds, loopIds, endIds));
       
     };
 
@@ -167,7 +170,7 @@ export default class TaskManager implements TaskManagerInterface{
         const methodList = this.taskConfig.getMethodListByInstance(instance , taskType);
         const idArry = new Array<string>();
         methodList.map( methodName => {
-            const task = instance[methodName];
+            const task = (<any>instance)[methodName];
             if(task){
                 const taskId = this[taskType].addTask(this.taskConfig.getPriorityByMethodName(methodName), task.bind(instance));
                 idArry.push(taskId);
@@ -179,8 +182,8 @@ export default class TaskManager implements TaskManagerInterface{
     /***
      * 移除组件所有任务.
      */
-    public removeComponentAllTask(gameObject: GameObjectInterface,component: AbstractComponent): void{
-        const recordId = `${gameObject.id}_${component.id}`;
+    public removeComponentAllTask(gameObject: GameObjectInterface,component: AbstarctComponentInterface): void{
+        const recordId = `${gameObject.Id}_${component.Id}`;
         const componentTaskIds = this.componentTaskIdsMap.get(recordId);
         this.removeComponentTasks(componentTaskIds,TaskType.START);
         this.removeComponentTasks(componentTaskIds,TaskType.LOOP);

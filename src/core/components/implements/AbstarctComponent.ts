@@ -6,7 +6,6 @@ import AbstarctComponentInterface from "../interface/AbstarctComponentInterface"
 import { ServiceNameSpaces } from "../../../config/RuntimeConfig";
 import Map from '../../../util/map/Map';
 import AbstractServiceInterface from "../../services/interface/AbstractServiceInterface";
-import CameraInterface from "../../gameObject/interface/CameraInterface";
 
 export default class AbstractComponent extends GEObject implements AbstarctComponentInterface{
     
@@ -18,32 +17,28 @@ export default class AbstractComponent extends GEObject implements AbstarctCompo
         this.services = services;
    };
 
-    protected addComponent<T extends AbstractComponent>(component: T): T {
+    addComponent<T extends AbstarctComponentInterface>(component: T): T {
         return this.gameObject.addComponent(component);
     };
 
-    protected removeComponent(component: AbstractComponent): void {
+    removeComponent(component: AbstarctComponentInterface): void {
        return this.gameObject.removeComponent(component);
     };
 
-    protected getComponents(componentType: typeof AbstractComponent): ArraySet<AbstarctComponentInterface> {
+    getComponents(componentType: typeof AbstractComponent): ArraySet<AbstarctComponentInterface> {
         return <any>this.gameObject.getComponents(componentType);
     };
 
-    protected getComponent<T extends AbstarctComponentInterface>(componentType: typeof AbstractComponent): T {
+    getComponent<T extends AbstarctComponentInterface>(componentType: typeof AbstractComponent): T {
         return <any>this.gameObject.getComponent(componentType);
     };
 
     
-    protected getService< T extends AbstractServiceInterface>(namespaces: ServiceNameSpaces): T {
+    getService< T extends AbstractServiceInterface>(namespaces: ServiceNameSpaces): T {
         return <T><any>this.services.get(namespaces);
     };
 
-    protected getMainCamera():CameraInterface{
-        return this.gameObject.getMainCamera();
-    }
-
-    public getAllComponents():Array<AbstarctComponentInterface>{
+    getAllComponents():Array<AbstarctComponentInterface>{
         return this.gameObject.getAllComponents();
     }
 

@@ -6,7 +6,6 @@ export default interface CameraComponentInterface extends AbstarctComponentInter
      * 摄像机屏幕的宽.
      * */
     readonly Width:number;
-
     
     /**
      * 摄像机屏幕的高.
@@ -22,4 +21,5 @@ export default interface CameraComponentInterface extends AbstarctComponentInter
      * 摄像机成像的屏幕坐标.
      */
     getScreenPosition():Vector2D;
+
 }

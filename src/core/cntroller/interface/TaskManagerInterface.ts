@@ -1,18 +1,18 @@
 import {ServiceNameSpaces} from '../../../config/RuntimeConfig';
-import AbstractService from '../../services/implement/AbstractService';
-import AbstractComponent from '../../components/implements/AbstarctComponent';
-import GameObject from '../../gameObject/implement/GameObject';
 import Map from '../../../util/map/Map';
+import AbstarctComponentInterface from '../../components/interface/AbstarctComponentInterface';
+import GameObjectInterface from '../../gameObject/interface/GameObjectInterface';
+import AbstractServiceInterface from '../../services/interface/AbstractServiceInterface';
 
 export default interface TaskManagerInterface{
-    addComponentTask<T extends AbstractComponent>(gameObject: GameObject,component: T): void;
+    addComponentTask<T extends AbstarctComponentInterface>(gameObject: GameObjectInterface,component: T): void;
   
-    ServiceInstances :Map<ServiceNameSpaces, AbstractService>;
+    readonly ServiceInstances :Map<ServiceNameSpaces, AbstractServiceInterface>;
   
       /***
        * 移除组件所有任务.
        */
-    removeComponentAllTask(gameObject: GameObject,component: AbstractComponent): void;
+    removeComponentAllTask(gameObject: GameObjectInterface,component: AbstarctComponentInterface): void;
   
     removeAllStartTask():void;
       

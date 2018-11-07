@@ -7,6 +7,8 @@ import Map from '../../util/map/Map';
 import CameraInterface from "../gameObject/interface/CameraInterface";
 import EventEmitor from "../../util/event/EventEmitor";
 import GameObjectInterface from "../gameObject/interface/GameObjectInterface";
+import AbstractServiceInterface from "../services/interface/AbstractServiceInterface";
+import AbstarctComponentInterface from "../components/interface/AbstarctComponentInterface";
 
 export enum  GEEvents {
     AddComponent = 'addComp',
@@ -40,9 +42,7 @@ export default class GE {
         this.eventEmitor.removeEventListener(GEEvent,fun);
     }
 
-    public static getMainCamera(): CameraInterface{
-        return this.mainCamera;
-    }
+  
 
     public static setMainCamera(camera: CameraInterface){
         this.mainCamera = camera;
@@ -64,7 +64,7 @@ export default class GE {
         });
     };
 
-    public static getServiceMap (): Map<ServiceNameSpaces, AbstractService>{
+    public static getServiceMap (): Map<ServiceNameSpaces, AbstractServiceInterface>{
         return this.taskManager.ServiceInstances;
     }
 
@@ -86,13 +86,13 @@ export default class GE {
         this.run();
     }
 
-    public static addComponent<T extends AbstractComponent>(gemeObject: GameObjectInterface, component: T): void {
+    public static addComponent<T extends AbstarctComponentInterface>(gemeObject: GameObjectInterface, component: T): void {
         this.hasNewComponent = true;
         this.taskManager.addComponentTask<T>(gemeObject, component);
         this.eventEmitor.emit(GEEvents.AddComponent, component);
     };
 
-    public static removeComponent(gemeObject: GameObjectInterface, component: AbstractComponent) {
+    public static removeComponent(gemeObject: GameObjectInterface, component: AbstarctComponentInterface) {
         this.taskManager.removeComponentAllTask(gemeObject, component);
         this.eventEmitor.emit(GEEvents.RemoveComponent, component);
     };
