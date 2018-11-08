@@ -1,20 +1,16 @@
-import AbstractComponent from "../components/implements/AbstarctComponent";
-import GameObject from "../gameObject/implement/GameObject";
-import TaskManager from "./implements/TaskManager";
-import runTimeConfig, { ServiceNameSpaces } from '../../config/RuntimeConfig';
-import AbstractService from "../services/implement/AbstractService";
-import Map from '../../util/map/Map';
-import CameraInterface from "../gameObject/interface/CameraInterface";
-import EventEmitor from "../../util/event/EventEmitor";
-import GameObjectInterface from "../gameObject/interface/GameObjectInterface";
-import AbstractServiceInterface from "../services/interface/AbstractServiceInterface";
-import AbstarctComponentInterface from "../components/interface/AbstarctComponentInterface";
+import AbstractComponent from "../../components/implements/AbstarctComponent";
+import GameObject from "../../gameObject/implement/GameObject";
+import TaskManager from "./TaskManager";
+import runTimeConfig, { ServiceNameSpaces } from '../../../config/RuntimeConfig';
+import AbstractService from "../../services/implement/AbstractService";
+import Map from '../../../util/map/Map';
+import CameraInterface from "../../gameObject/interface/CameraInterface";
+import EventEmitor from "../../../util/event/EventEmitor";
+import GameObjectInterface from "../../gameObject/interface/GameObjectInterface";
+import AbstractServiceInterface from "../../services/interface/AbstractServiceInterface";
+import AbstarctComponentInterface from "../../components/interface/AbstarctComponentInterface";
+import { GEEvents } from '../interface/GEInterfece';
 
-export enum  GEEvents {
-    AddComponent = 'addComp',
-    RemoveComponent='removeComponent',
-    SetMainCamera='setMainCamera',
-}
 
 /**
  * 根据配置调度各个组件与服务的方法.

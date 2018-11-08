@@ -1,7 +1,7 @@
 import AbstractService from "./AbstractService";
 import Render2DServiceInterface from "../interface/Render2DServiceInterface";
 import Camera2D from "../../gameObject/implement/Camera2D";
-import GE, { GEEvents } from "../../cntroller/GE";
+import GE from "../../cntroller/implements/GE";
 
 export default class Render2DService extends AbstractService implements Render2DServiceInterface{
 

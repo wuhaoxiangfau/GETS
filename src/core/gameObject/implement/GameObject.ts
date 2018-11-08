@@ -1,5 +1,5 @@
 import GEObject from "../../cntroller/implements/GEObject";
-import GE from '../../cntroller/GE'
+import GE from '../../cntroller/implements/GE'
 import AbstractComponent from "../../components/implements/AbstarctComponent";
 import MutiValueMap from '../../../util/map/MutiValueMap';
 import ArraySet from '../../../util/ArraySet';

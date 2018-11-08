@@ -1,11 +1,12 @@
 import AbstractService from "./AbstractService";
 import CollisionServiceInterface, { ImpactInfo, MotionInfo, ImpackTask, ImpactInstanceInfo } from "../interface/CollisionServiceInterface";
 import Collision2DComponentInterface from "../../components/interface/Collision2DComponentInterface";
-import GE, { GEEvents } from "../../cntroller/GE";
+import GE from "../../cntroller/implements/GE";
 import AbstractComponent from "../../components/implements/AbstarctComponent";
 import Map from "../../../util/map/Map";
 import MutiValueMap from "../../../util/map/MutiValueMap";
 import AbstarctComponentInterface from "../../components/interface/AbstarctComponentInterface";
+import { GEEvents } from "../../cntroller/interface/GEInterfece";
 
 
 export class CollisionService extends AbstractService implements CollisionServiceInterface {
