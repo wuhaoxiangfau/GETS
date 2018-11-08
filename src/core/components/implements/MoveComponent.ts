@@ -1,17 +1,16 @@
 import AbstractComponent from "./AbstarctComponent";
 import InputServiceInterface, { KeyBoard } from "../../services/interface/InputServiceInterface";
-import { ServiceNameSpaces } from "../../../config/RuntimeConfig";
+import { ServiceNameSpaces, ComponentNameSpace } from "../../../util/data/Enum";
 import Position2DComponentsInterface from "../interface/Position2DComponentsInterface";
 import Position2DComponents from "./Position2DComponents";
 import TimerInterface from "../../services/interface/TimerInterface";
-import Camera2D from "../../gameObject/implement/Camera2D";
-import CameraInterface from "../../gameObject/interface/CameraInterface";
+import CameraComponentInterface from "../interface/Camera2DComponentInterface";
 
 export default class MoveComponent extends AbstractComponent{
 
     constructor(){
         super();
-        
+        this.nameSpace = ComponentNameSpace.MoveComponent;
     }
     
     private input:InputServiceInterface;
@@ -22,7 +21,7 @@ export default class MoveComponent extends AbstractComponent{
 
     private speed = 100;
 
-    private mainCamera: CameraInterface;
+    private mainCamera: CameraComponentInterface;
 
     get Speed(){
         return this.speed;
@@ -34,7 +33,7 @@ export default class MoveComponent extends AbstractComponent{
 
     awake(){
         this.input = this.getService(ServiceNameSpaces.InputService);
-        this.positionComp = this.getComponent(Position2DComponents);
+        this.positionComp = this.getComponent(ComponentNameSpace.Position2DComponents);
         this.timer = this.getService(ServiceNameSpaces.Timer);
     }
 

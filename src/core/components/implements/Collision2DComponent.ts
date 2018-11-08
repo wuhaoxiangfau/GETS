@@ -1,7 +1,7 @@
 import AbstractComponent from "./AbstarctComponent";
 import Collision2DComponentInterface from "../interface/Collision2DComponentInterface";
 import CollisionServiceInterface, { ImpactInfo, MotionInfo } from "../../services/interface/CollisionServiceInterface";
-import { ServiceNameSpaces } from "../../../config/RuntimeConfig";
+import { ServiceNameSpaces, ComponentNameSpace } from "../../../util/data/Enum";
 import Position2DComponentsInterface from "../interface/Position2DComponentsInterface";
 import Position2DComponents from "./Position2DComponents";
 import Vector2D from "../../../util/data/Vector2D";
@@ -15,6 +15,7 @@ export default class Collision2DComponent extends AbstractComponent implements C
         this.offsetX = offsetX || 0;
         this.offsetY = offsetY || 0;
         this.collisionType = collisionType;
+        this.nameSpace = ComponentNameSpace.Collision2DComponent;
     };
 
     private width:number;
@@ -53,7 +54,7 @@ export default class Collision2DComponent extends AbstractComponent implements C
 
     init(){
         this.collisionService = this.getService(ServiceNameSpaces.Collision);
-        this.positionComp = this.getComponent(Position2DComponents);
+        this.positionComp = this.getComponent(ComponentNameSpace.Position2DComponents);
     }
 
 

@@ -1,7 +1,7 @@
 import GEObject from "../../cntroller/implements/GEObject";
 import AbstractServiceInterface from "../interface/AbstractServiceInterface";
 import GE from "../../cntroller/implements/GE";
-import { ServiceNameSpaces } from '../../../config/RuntimeConfig';
+import { ServiceNameSpaces } from '../../../util/data/Enum';
 
 export default class AbstractService  extends GEObject implements AbstractServiceInterface { 
    

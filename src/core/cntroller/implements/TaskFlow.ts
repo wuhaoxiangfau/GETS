@@ -1,5 +1,6 @@
 import Map from '../../../util/map/Map';
 import TaskFolwInterface from '../interface/TaskFlowInterface';
+
 class TaskRecord {
 
     constructor(priority: number, task: Function){
@@ -29,7 +30,7 @@ export class TaskFlow implements TaskFolwInterface{
 
      /**
      * 
-     *按照优先级制作task. 
+     *按照优先级执行task. 
      * @param priority 优先级 > 0.
      * @param task 执行的方法.
      * @returns 任务的ID.
@@ -73,11 +74,13 @@ export class TaskFlow implements TaskFolwInterface{
         for( let currentPriority = 0; currentPriority < this.tasks.length; currentPriority++){
             const taskArry = this.tasks[currentPriority]||[];
             for(let taskInd = 0; taskInd < taskArry.length; taskInd++){
-                try{
-                    taskArry[taskInd]();
-                }catch(e){
-                    console.error(e);
-                }
+               
+                taskArry[taskInd]();
+                // try{
+                //     taskArry[taskInd]();
+                // }catch(e){
+                //     console.error(e);
+                // }
             }
         }
     };

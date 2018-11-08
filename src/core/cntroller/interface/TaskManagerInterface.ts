@@ -1,4 +1,4 @@
-import {ServiceNameSpaces} from '../../../config/RuntimeConfig';
+import {ServiceNameSpaces} from '../../../util/data/Enum';
 import Map from '../../../util/map/Map';
 import AbstarctComponentInterface from '../../components/interface/AbstarctComponentInterface';
 import GameObjectInterface from '../../gameObject/interface/GameObjectInterface';

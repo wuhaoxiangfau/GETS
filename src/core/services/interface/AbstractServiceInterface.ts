@@ -1,6 +1,5 @@
 import GEObjectInterface from "../../cntroller/interface/GEObjectInterface";
-import CameraInterface from "../../gameObject/interface/CameraInterface";
-import { ServiceNameSpaces } from "../../../config/RuntimeConfig";
+import { ServiceNameSpaces } from "../../../util/data/Enum";
 
 
 export default interface AbstractServiceInterface extends GEObjectInterface {

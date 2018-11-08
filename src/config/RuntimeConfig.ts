@@ -8,6 +8,9 @@ import Position2DComponents from "../core/components/implements/Position2DCompon
 import { ResourceLoader } from "../core/services/implement/ResourceLoader";
 import Render2DComponent from "../core/components/implements/Render2DComponent";
 import { CollisionService } from "../core/services/implement/CollisionService";
+import Camera2DService from "../core/services/implement/Camera2DService";
+import { ServiceNameSpaces } from "../util/data/Enum";
+
 export interface RuntimeConfigUnit {
     methodName: string;
     scope: Array<typeof GEObject>;
@@ -24,19 +27,14 @@ export interface ServiceConfig {
     serviceClass: typeof AbstractService;
 }
 
-export enum ServiceNameSpaces {
-    Timer = 1,
-    InputService = 2,
-    Render2DService = 3,
-    ResourceLoader = 4,
-    Collision = 5,
-}
+
 
 /**
  * 定义各个阶段的回调函数.与作用的类型.
  */
 export default {
     services: [ 
+        
         { 
             namespace: ServiceNameSpaces.Timer , 
             serviceClass: Timer 
@@ -57,28 +55,34 @@ export default {
             namespace: ServiceNameSpaces.Collision,
             serviceClass: CollisionService,
         }, 
+        { 
+            namespace: ServiceNameSpaces.Camera2D,
+            serviceClass: Camera2DService,
+        }, 
     ],
     
     start: [
-        {
-            methodName: 'init',
-            scope: [ AbstractService ],
-        },
+        
         {
             methodName: 'awake',
             scope: [ AbstractComponent ],
         },
         {
+            methodName: 'init',
+            scope: [ AbstractService ],
+        },
+        {
             methodName: 'start',
             scope: [ AbstractComponent ],
         },
+
     ],
     loop: [
+
         {
             methodName: 'willUpdate',
             scope: [ AbstractComponent, AbstractService],
         },
-       
         {
             methodName: 'update',
             scope: [ AbstractService, AbstractComponent ],

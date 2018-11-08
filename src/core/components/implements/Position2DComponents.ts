@@ -1,10 +1,12 @@
 import AbstractComponent from "./AbstarctComponent";
 import Position2DComponentsInterface from "../interface/Position2DComponentsInterface";
+import { ComponentNameSpace } from "../../../util/data/Enum";
 
 export default class Position2DComponents extends AbstractComponent implements Position2DComponentsInterface{
 
     constructor(){
         super();
+        this.nameSpace = ComponentNameSpace.Position2DComponents;
     }
 
     private x = 0;
@@ -19,7 +21,7 @@ export default class Position2DComponents extends AbstractComponent implements P
 
     private oldRotation = 0;
 
-    private isDirty = false;
+    private isDirty = true;
 
     get X(){
         return this.x;

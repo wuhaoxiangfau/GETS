@@ -7,14 +7,15 @@ import Map from "../../../util/map/Map";
 import MutiValueMap from "../../../util/map/MutiValueMap";
 import AbstarctComponentInterface from "../../components/interface/AbstarctComponentInterface";
 import { GEEvents } from "../../cntroller/interface/GEInterfece";
+import { ComponentEvents } from "../../../util/data/Enum";
 
 
 export class CollisionService extends AbstractService implements CollisionServiceInterface {
 
    constructor(){
        super();
-       GE.addEventListener(GEEvents.AddComponent, this.registImpactTask);
-       GE.addEventListener(GEEvents.RemoveComponent, this.unRegistImpactTask);
+       GE.subscribeComponentEvent(ComponentEvents.AddComponent, this.registImpactTask);
+       GE.subscribeComponentEvent(ComponentEvents.RemoveComponent, this.unRegistImpactTask);
        //TODO object Destory 监听.
     }
 

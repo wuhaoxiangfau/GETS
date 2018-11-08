@@ -9,7 +9,10 @@ export default class ArraySet<T>{
         }
         return index;
     };
-
+    contains(value: T):boolean {
+        return this.array.indexOf(value) > -1;
+    };
+    
     get(index: number): T {
         return this.array[index];
     };
@@ -36,6 +39,6 @@ export default class ArraySet<T>{
     };
 
     valus():Array<T> {
-        return this.array;
+        return [...this.array];
     }
 }

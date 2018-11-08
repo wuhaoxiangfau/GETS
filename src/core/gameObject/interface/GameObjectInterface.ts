@@ -2,6 +2,7 @@ import GEObjectInterface from "../../cntroller/interface/GEObjectInterface";
 import AbstractComponent from "../../components/implements/AbstarctComponent";
 import ArraySet from '../../../util/ArraySet';
 import AbstarctComponentInterface from "../../components/interface/AbstarctComponentInterface";
+import { ComponentNameSpace } from "../../../util/data/Enum";
 
 export default interface GameObjectInterface extends GEObjectInterface {
     
@@ -9,9 +10,9 @@ export default interface GameObjectInterface extends GEObjectInterface {
 
     removeComponent(component: AbstarctComponentInterface): void;
 
-    getComponents(componentType: typeof AbstractComponent): ArraySet<AbstarctComponentInterface>;
+    getComponents(componentType: ComponentNameSpace): ArraySet<AbstarctComponentInterface>;
 
-    getComponent(componentType: typeof AbstractComponent): AbstarctComponentInterface;
+    getComponent(componentType: ComponentNameSpace): AbstarctComponentInterface;
 
     getAllComponents():Array<AbstarctComponentInterface>;
 

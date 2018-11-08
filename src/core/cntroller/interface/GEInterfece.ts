@@ -4,7 +4,6 @@ import AbstarctComponentInterface from "../../components/interface/AbstarctCompo
 export enum GEEvents {
     AddComponent = 'addComp',
     RemoveComponent = 'removeComponent',
-    SetMainCamera = 'setMainCamera',
 }
 
 export default interface GEInterfece {

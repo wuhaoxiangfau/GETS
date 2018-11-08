@@ -2,17 +2,17 @@ import MutiValueMap from "../map/MutiValueMap";
 
 export default class EventEmitor {
 
-    private listeners = new  MutiValueMap<string, Function>();
+    private listeners = new  MutiValueMap<string|number, Function>();
 
-    addEventListener(eventName: string, fun: Function){
+    addEventListener(eventName: string|number, fun: Function){
         this.listeners.add(eventName, fun);
     }
 
-    removeEventListener(eventName: string, fun: Function){
+    removeEventListener(eventName: string|number, fun: Function){
         this.listeners.removeValue(eventName, fun);
     }
 
-    emit(eventName: string, ...params:Array<any> ){
+    emit(eventName: string|number, ...params:Array<any> ){
       const listeners = [ ...this.listeners.get(eventName).valus() ];
       for(let i = 0; i< listeners.length; i++){
           try{

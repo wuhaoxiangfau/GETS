@@ -1,12 +1,13 @@
 import AbstractComponent from "./AbstarctComponent";
 import TimerInterface from "../../services/interface/TimerInterface";
-import { ServiceNameSpaces } from "../../../config/RuntimeConfig";
+import { ServiceNameSpaces, ComponentNameSpace } from "../../../util/data/Enum";
 import InputServiceInterface,{KeyBoard} from "../../services/interface/InputServiceInterface";
 
 export default class TestComponents extends AbstractComponent{
 
     constructor(){
         super();
+        this.nameSpace = ComponentNameSpace.TestComponents;
     }
 
     private timer: TimerInterface;

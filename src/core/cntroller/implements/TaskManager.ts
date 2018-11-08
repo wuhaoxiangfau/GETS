@@ -3,7 +3,7 @@ import { TaskFlow } from './TaskFlow';
 import GameObject from '../../gameObject/implement/GameObject';
 import AbstractComponent from '../../components/implements/AbstarctComponent';
 import Map from '../../../util/map/Map';
-import {RuntimeConfig, RuntimeConfigUnit, ServiceConfig, ServiceNameSpaces} from '../../../config/RuntimeConfig';
+import {RuntimeConfig, RuntimeConfigUnit, ServiceConfig} from '../../../config/RuntimeConfig';
 import ArraySet from '../../../util/ArraySet';
 import GEObject from './GEObject';
 import TaskManagerInterface from '../interface/TaskManagerInterface';
@@ -12,6 +12,7 @@ import GameObjectInterface from '../../gameObject/interface/GameObjectInterface'
 import GEObjectInterface from '../interface/GEObjectInterface';
 import AbstarctComponentInterface from '../../components/interface/AbstarctComponentInterface';
 import AbstractServiceInterface from '../../services/interface/AbstractServiceInterface';
+import { ServiceNameSpaces } from '../../../util/data/Enum';
 
 
 class ComponentTaskIds{

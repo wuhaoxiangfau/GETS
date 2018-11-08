@@ -12,7 +12,6 @@ import Camera2D from './core/gameObject/implement/Camera2D';
 //     GE.pause();
 // }, 5500);
 GE.init();
-
-GE.setMainCamera(new Camera2D());
+new Camera2D();
 GE.start();
 const testGameObject = new TestGameObject();
