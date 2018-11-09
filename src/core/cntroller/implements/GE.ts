@@ -40,7 +40,7 @@ export default class GE {
     // }
 
     static publishComponentEvent(eventName: ComponentEvents, ...params: Array<any>){
-        this.eventEmitor.emit( eventName,...params);
+        this.eventEmitor.emit( eventName, ...params);
     };
 
     static subscribeComponentEvent(eventName: ComponentEvents, fun: Function){
